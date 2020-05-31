@@ -12,4 +12,7 @@ export class TemplateComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  save(){
+    console.log("Submit");
+  }
 }
