@@ -43,6 +43,29 @@
     </div>
 
     <div class="form-group row">
+        <label class="col-2 col-form-label">Genero</label>
+        <div class="col-8">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="customRadioInline1" value="M" name="genero" [class.is-invalid]="generoInput.invalid && generoInput.touched" [ngModel]="usuario.genero" required #generoInput="ngModel">
+                <label class="custom-control-label" for="customRadioInline1">Masculino</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="customRadioInline2" value="F" name="genero" [class.is-invalid]="generoInput.invalid && generoInput.touched" [ngModel]="usuario.genero" required #generoInput="ngModel">
+                <label class="custom-control-label" for="customRadioInline2">Femenino</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="customRadioInline3" value="NB" name="genero" [class.is-invalid]="generoInput.invalid && generoInput.touched" [ngModel]="usuario.genero" required #generoInput="ngModel">
+                <label class="custom-control-label" for="customRadioInline3">No Binario</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" class="custom-control-input" id="customRadioInline4" value="O" name="genero" [class.is-invalid]="generoInput.invalid && generoInput.touched" [ngModel]="usuario.genero" required #generoInput="ngModel">
+                <label class="custom-control-label" for="customRadioInline4">Otro</label>
+            </div>
+            <small *ngIf="generoInput.invalid && generoInput.touched" class="form-text text-danger">Debe seleccionar un Genero</small>
+        </div>
+    </div>
+
+    <div class="form-group row">
         <label class="col-2 col-form-label">&nbsp;</label>
         <div class="input-group col-md-8">
             <button type="submit" class="btn btn-outline-primary btn-block">
