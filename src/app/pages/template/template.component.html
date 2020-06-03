@@ -8,6 +8,7 @@
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
                 <input [ngModel]="usuario.nombre" name="nombre" [class.is-invalid]="nombreInput.invalid && nombreInput.touched" class="form-control" type="text" placeholder="Nombre" minlength="5" required #nombreInput="ngModel">
+                <small *ngIf="nombreInput.invalid && nombreInput.touched" class="form-text text-danger">Ingrese al menos 5 caracteres</small>
             </div>
         </div>
 
@@ -15,7 +16,8 @@
             <label class="col-2 col-form-label">Apellido</label>
             <div class="col-8">
 
-                <input ngModel class="form-control" [class.is-invalid]="apellidoInput.invalid && apellidoInput.touched" name="apellido" type="text" placeholder="Apellido" minlength="2" required #apellidoInput="ngModel">
+                <input [ngModel]="usuario.apellido" class="form-control" [class.is-invalid]="apellidoInput.invalid && apellidoInput.touched" name="apellido" type="text" placeholder="Apellido" minlength="2" required #apellidoInput="ngModel">
+                <small *ngIf="apellidoInput.invalid && apellidoInput.touched" class="form-text text-danger">Ingrese al menos 5 caracteres</small>
             </div>
         </div>
 
@@ -25,7 +27,8 @@
         <label class="col-2 col-form-label">Correo</label>
         <div class="col-8">
 
-            <input class="form-control" ngModel name="email" [class.is-invalid]="correoInput.invalid && correoInput.touched" type="email" placeholder="Correo electrónico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required #correoInput="ngModel">
+            <input class="form-control" [ngModel]="usuario.email" name="email" [class.is-invalid]="correoInput.invalid && correoInput.touched" type="email" placeholder="Correo electrónico" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required #correoInput="ngModel">
+            <small *ngIf="correoInput.invalid && correoInput.touched" class="form-text text-danger">El Correo es Requerido</small>
         </div>
     </div>
 
