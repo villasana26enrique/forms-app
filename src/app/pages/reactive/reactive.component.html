@@ -42,3 +42,12 @@
     </div>
 
 </form>
+
+<hr>
+<pre>
+    Estado del Formulario: {{ formulario.valid }}
+    <br>
+    Status: {{ formulario.status }}
+    <br>
+    Valores: {{ formulario.value | json }}
+</pre>
