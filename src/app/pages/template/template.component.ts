@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CountriesService } from '../../services/countries.service';
 
 @Component({
   selector: 'app-template',
@@ -14,9 +15,10 @@ export class TemplateComponent implements OnInit {
     email: 'enrique.villasana26@gmail.com'
   };
 
-  constructor() { }
+  constructor( private countries: CountriesService) { }
 
   ngOnInit(): void {
+    this.countries.getCountries$().subscribe( resp => console.log(resp) );
   }
 
   save(form: NgForm) {
