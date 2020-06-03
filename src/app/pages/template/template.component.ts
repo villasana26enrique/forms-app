@@ -12,13 +12,23 @@ export class TemplateComponent implements OnInit {
   usuario = {
     nombre: 'Enrique',
     apellido: 'Villasana',
-    email: 'enrique.villasana26@gmail.com'
+    email: 'enrique.villasana26@gmail.com',
+    pais: ''
   };
 
-  constructor( private countries: CountriesService) { }
+  paises: any[] = [];
+
+  constructor( private countriesService: CountriesService) { }
 
   ngOnInit(): void {
-    this.countries.getCountries$().subscribe( resp => console.log(resp) );
+    this.countriesService.getCountries$().subscribe( paises => {
+      this.paises = paises;
+      this.paises.unshift({
+        name: 'Seleccione un País',
+        code: ''
+      });
+      console.log(this.paises);
+    });
   }
 
   save(form: NgForm) {
