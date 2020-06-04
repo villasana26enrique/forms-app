@@ -7,8 +7,8 @@
         <div class="form-group row">
             <label class="col-2 col-form-label">Nombre</label>
             <div class="col-8">
-
-                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre">
+                <input class="form-control" type="text" placeholder="Nombre" formControlName="nombre" [class.is-invalid]="validarNombre">
+                <small class="text-danger" *ngIf="validarNombre">Ingrese al menos 5 digitos</small>
             </div>
         </div>
 
@@ -16,7 +16,8 @@
             <label class="col-2 col-form-label">Apellido</label>
             <div class="col-8">
 
-                <input class="form-control" type="text" placeholder="Apellido" formControlName="apellido">
+                <input class="form-control" type="text" placeholder="Apellido" [class.is-invalid]="validarApellido" formControlName="apellido">
+                <small *ngIf="validarApellido" class="text-danger">El apellido es requerido</small>
             </div>
         </div>
 
@@ -26,7 +27,8 @@
         <label class="col-2 col-form-label">Correo</label>
         <div class="col-8">
 
-            <input class="form-control" type="email" placeholder="Correo electrónico" formControlName="email">
+            <input class="form-control" type="email" placeholder="Correo electrónico" [class.is-invalid]="validarEmail" formControlName="email">
+            <small *ngIf="validarEmail" class="text-danger">El Correo no es válido</small>
         </div>
     </div>
 
