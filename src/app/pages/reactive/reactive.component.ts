@@ -16,6 +16,7 @@ export class ReactiveComponent implements OnInit {
     que se inicialice antes de que se empiece a construir el HTML. Por
     eso no se inicializa en el ngOnInit*/
     this.crearFormulario();
+    this.cargarInformacion();
   }
 
   ngOnInit(): void {
@@ -53,6 +54,18 @@ export class ReactiveComponent implements OnInit {
     });
   }
 
+  cargarInformacion() {
+    this.formulario.setValue({
+      nombre: 'Enrique',
+      apellido: 'Villasana',
+      email: 'enrique.villasana26@gmail.com',
+      direccion: {
+        estado: 'Carabobo',
+        ciudad: 'San Diego'
+      }
+    });
+  }
+
   guardar() {
     console.log(this.formulario);
     if (this.formulario.invalid) {
@@ -68,7 +81,10 @@ export class ReactiveComponent implements OnInit {
         }
       });
     }
-    console.log(this.formulario);
+    /* Aquí se deberia recibir la información correcta, es donde se debería enviar
+    a un servicio o BD. Pero por los momentos solo haré un reset para limpiar el
+    el formulario */
+    this.formulario.reset( /*{ nombre: 'Enrique'}*/ );
   }
 
 }
