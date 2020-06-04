@@ -33,6 +33,14 @@ export class ReactiveComponent implements OnInit {
     return this.formulario.get('email').invalid && this.formulario.get('email').touched;
   }
 
+  get validarEstado() {
+    return this.formulario.get('direccion.estado').invalid && this.formulario.get('direccion.estado').touched;
+  }
+
+  get validarCiudad() {
+    return this.formulario.get('direccion.ciudad').invalid && this.formulario.get('direccion.ciudad').touched;
+  }
+
   crearFormulario() {
     this.formulario = this.fb.group({
       nombre: [ '', [ Validators.required, Validators.minLength(5) ] ],
@@ -46,9 +54,18 @@ export class ReactiveComponent implements OnInit {
   }
 
   guardar() {
+    console.log(this.formulario);
     if (this.formulario.invalid) {
       return Object.values(this.formulario.controls).forEach(control => {
-        control.markAsTouched();
+
+        // Se evalúa si el control es aninado (Como la dirección)
+        if ( control instanceof FormGroup ) {
+          Object.values(control.controls).forEach(controlGroup => {
+            controlGroup.markAsTouched();
+          });
+        } else {
+          control.markAsTouched();
+        }
       });
     }
     console.log(this.formulario);

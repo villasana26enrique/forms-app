@@ -36,10 +36,12 @@
         <label class="col-2 col-form-label">Dirección</label>
         <div class="form-row col">
             <div class="col">
-                <input type="text" class="form-control" placeholder="Estado" formControlName="estado">
+                <input type="text" class="form-control" placeholder="Estado" formControlName="estado" [class.is-invalid]="validarEstado">
+                <small *ngIf="validarEstado" class="text-danger">El Estado es requerido</small>
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="Ciudad" formControlName="ciudad">
+                <input type="text" class="form-control" placeholder="Ciudad" formControlName="ciudad" [class.is-invalid]="validarCiudad">
+                <small *ngIf="validarCiudad" class="text-danger">La Ciudad es requerida</small>
             </div>
         </div>
     </div>
