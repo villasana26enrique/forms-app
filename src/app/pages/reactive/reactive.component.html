@@ -46,12 +46,42 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Pasatiempo</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody formArrayName="pasatiempos">
+                    <tr *ngFor="let pasatiempo of obtenerPasatiempos.controls; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td><input class="form-control" type="text" [formControlName]="i"> </td>
+                        <td>
+                            <button class="btn btn-danger">
+                                borrar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col">
+                    <button class="mt-3 mb-3 btn btn-primary btn-block" type="button">
+                        + Agregar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-    <div class="form-group row">
-        <label class="col-2 col-form-label">&nbsp;</label>
-        <div class="input-group">
-            <button type="submit" class="btn btn-outline-primary btn-block">
+    <div class=" form-group row ">
+        <label class="col-2 col-form-label ">&nbsp;</label>
+        <div class="input-group ">
+            <button type="submit " class="btn btn-outline-primary btn-block ">
         Guardar
       </button>
         </div>

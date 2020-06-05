@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive',
@@ -16,10 +16,14 @@ export class ReactiveComponent implements OnInit {
     que se inicialice antes de que se empiece a construir el HTML. Por
     eso no se inicializa en el ngOnInit*/
     this.crearFormulario();
-    this.cargarInformacion();
+    // this.cargarInformacion();
   }
 
   ngOnInit(): void {
+  }
+
+  get obtenerPasatiempos() {
+    return this.formulario.get('pasatiempos') as FormArray;
   }
 
   get validarNombre() {
@@ -50,7 +54,8 @@ export class ReactiveComponent implements OnInit {
       direccion: this.fb.group({
         estado: ['', Validators.required],
         ciudad: ['', Validators.required]
-      })
+      }),
+      pasatiempos: this.fb.array([[], [], []])
     });
   }
 
