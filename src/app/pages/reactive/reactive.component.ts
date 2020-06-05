@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
+import { ValidatorsService } from '../../services/validators.service';
 
 @Component({
   selector: 'app-reactive',
@@ -12,7 +13,8 @@ export class ReactiveComponent implements OnInit {
   formulario: FormGroup;
 
   /* El FormBuilder nos ayudara a configurar el Formulario */
-  constructor( private fb: FormBuilder ) {
+  constructor( private fb: FormBuilder,
+               private validator: ValidatorsService ) {
     /* Se Inicializa el formulario en el constructor ya que se necesita
     que se inicialice antes de que se empiece a construir el HTML. Por
     eso no se inicializa en el ngOnInit*/
@@ -32,7 +34,16 @@ export class ReactiveComponent implements OnInit {
   }
 
   get validarApellido() {
-    return this.formulario.get('apellido').invalid && this.formulario.get('apellido').touched;
+    if ( !this.apellidoHerrera ) {
+      return this.formulario.get('apellido').invalid && this.formulario.get('apellido').touched;
+    }
+  }
+
+  get apellidoHerrera() {
+    if (this.formulario.get('apellido').errors) {
+      return this.formulario.get('apellido').errors.noHerrera;
+    }
+    return false;
   }
 
   get validarEmail() {
@@ -50,7 +61,7 @@ export class ReactiveComponent implements OnInit {
   crearFormulario() {
     this.formulario = this.fb.group({
       nombre: [ '', [ Validators.required, Validators.minLength(5) ] ],
-      apellido: [ '', Validators.required ],
+      apellido: [ '', [Validators.required, this.validator.noHerrera] ],
       email: ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$') ] ],
       direccion: this.fb.group({
         estado: ['', Validators.required],

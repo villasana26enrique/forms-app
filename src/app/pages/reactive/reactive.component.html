@@ -18,6 +18,7 @@
 
                 <input class="form-control" type="text" placeholder="Apellido" [class.is-invalid]="validarApellido" formControlName="apellido">
                 <small *ngIf="validarApellido" class="text-danger">El apellido es requerido</small>
+                <small *ngIf="apellidoHerrera" class="text-danger">El apellido Herrera no es permitido</small>
             </div>
         </div>
 
