@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { UpperCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-reactive',
@@ -16,7 +17,7 @@ export class ReactiveComponent implements OnInit {
     que se inicialice antes de que se empiece a construir el HTML. Por
     eso no se inicializa en el ngOnInit*/
     this.crearFormulario();
-    // this.cargarInformacion();
+    this.cargarInformacion();
   }
 
   ngOnInit(): void {
@@ -55,12 +56,12 @@ export class ReactiveComponent implements OnInit {
         estado: ['', Validators.required],
         ciudad: ['', Validators.required]
       }),
-      pasatiempos: this.fb.array([[], [], []])
+      pasatiempos: this.fb.array([])
     });
   }
 
   cargarInformacion() {
-    this.formulario.setValue({
+    this.formulario.reset({
       nombre: 'Enrique',
       apellido: 'Villasana',
       email: 'enrique.villasana26@gmail.com',
@@ -68,6 +69,11 @@ export class ReactiveComponent implements OnInit {
         estado: 'Carabobo',
         ciudad: 'San Diego'
       }
+    });
+
+    ['Comer', 'Programar', 'Trabajar'].forEach( (valor: string) => {
+      // tslint:disable-next-line: no-bitwise
+      this.obtenerPasatiempos.push( this.fb.control( valor ) );
     });
   }
 
@@ -90,6 +96,14 @@ export class ReactiveComponent implements OnInit {
     a un servicio o BD. Pero por los momentos solo haré un reset para limpiar el
     el formulario */
     this.formulario.reset( /*{ nombre: 'Enrique'}*/ );
+  }
+
+  agregarPasatiempo() {
+    this.obtenerPasatiempos.push( this.fb.control(['']) );
+  }
+
+  borrarPasatiempo( index: number ) {
+    this.obtenerPasatiempos.removeAt( index );
   }
 
 }
