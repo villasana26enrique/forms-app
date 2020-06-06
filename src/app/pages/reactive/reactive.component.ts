@@ -58,16 +58,30 @@ export class ReactiveComponent implements OnInit {
     return this.formulario.get('direccion.ciudad').invalid && this.formulario.get('direccion.ciudad').touched;
   }
 
+  get pass1NoValido() {
+    return this.formulario.get('pass1').invalid && this.formulario.get('pass1').touched;
+  }
+
+  get pass2NoValido() {
+    const pass1 = this.formulario.get('pass1').value;
+    const pass2 = this.formulario.get('pass2').value;
+    return ( pass1 === pass2 ) ? false : true;
+  }
+
   crearFormulario() {
     this.formulario = this.fb.group({
-      nombre: [ '', [ Validators.required, Validators.minLength(5) ] ],
+      nombre  : [ '', [ Validators.required, Validators.minLength(5) ] ],
       apellido: [ '', [Validators.required, this.validator.noHerrera] ],
-      email: ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$') ] ],
+      email   : ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$') ] ],
+      pass1   : ['', [ Validators.required ]],
+      pass2   : ['', [ Validators.required ]],
       direccion: this.fb.group({
         estado: ['', Validators.required],
         ciudad: ['', Validators.required]
       }),
       pasatiempos: this.fb.array([])
+    }, {
+      validators: this.validator.evaluarPassword( 'pass1', 'pass2' )
     });
   }
 

@@ -33,6 +33,24 @@
         </div>
     </div>
 
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Contraseña</label>
+        <div class="col">
+
+            <input class="form-control" type="password" placeholder="Contraseña" [class.is-invalid]="pass1NoValido" formControlName="pass1">
+            <!--<small *ngIf="validarEmail" class="text-danger">El Correo no es válido</small>-->
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Repetir Contraseña</label>
+        <div class="col">
+
+            <input class="form-control" type="password" placeholder="Contraseña" [class.is-invalid]="pass2NoValido" formControlName="pass2">
+            <!--<small *ngIf="validarEmail" class="text-danger">El Correo no es válido</small>-->
+        </div>
+    </div>
+
     <div class="form-group row" formGroupName="direccion">
         <label class="col-2 col-form-label">Dirección</label>
         <div class="form-row col">
