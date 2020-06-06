@@ -19,6 +19,7 @@ export class ReactiveComponent implements OnInit {
     que se inicialice antes de que se empiece a construir el HTML. Por
     eso no se inicializa en el ngOnInit*/
     this.crearFormulario();
+    this.crearListeners();
     this.cargarInformacion();
   }
 
@@ -88,6 +89,14 @@ export class ReactiveComponent implements OnInit {
     }, {
       validators: this.validator.evaluarPassword( 'pass1', 'pass2' )
     });
+  }
+
+  crearListeners() {
+    this.formulario.valueChanges.subscribe( valor => console.log(valor) );
+
+    this.formulario.statusChanges.subscribe( status => console.log({ status }) );
+
+    this.formulario.get('nombre').valueChanges.subscribe( console.log );
   }
 
   cargarInformacion() {
