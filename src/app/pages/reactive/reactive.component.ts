@@ -50,6 +50,10 @@ export class ReactiveComponent implements OnInit {
     return this.formulario.get('email').invalid && this.formulario.get('email').touched;
   }
 
+  get validarUsuario() {
+    return this.formulario.get('usuario').invalid && this.formulario.get('usuario').touched;
+  }
+
   get validarEstado() {
     return this.formulario.get('direccion.estado').invalid && this.formulario.get('direccion.estado').touched;
   }
@@ -73,6 +77,7 @@ export class ReactiveComponent implements OnInit {
       nombre  : [ '', [ Validators.required, Validators.minLength(5) ] ],
       apellido: [ '', [Validators.required, this.validator.noHerrera] ],
       email   : ['', [ Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$') ] ],
+      usuario : [ '', , this.validator.existeUsuario ],
       pass1   : ['', [ Validators.required ]],
       pass2   : ['', [ Validators.required ]],
       direccion: this.fb.group({
@@ -90,6 +95,8 @@ export class ReactiveComponent implements OnInit {
       nombre: 'Enrique',
       apellido: 'Villasana',
       email: 'enrique.villasana26@gmail.com',
+      pass1: '12345678',
+      pass2: '12345678',
       direccion: {
         estado: 'Carabobo',
         ciudad: 'San Diego'
