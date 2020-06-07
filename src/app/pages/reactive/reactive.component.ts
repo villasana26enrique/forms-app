@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
-import { UpperCasePipe } from '@angular/common';
 import { ValidatorsService } from '../../services/validators.service';
 
 @Component({
